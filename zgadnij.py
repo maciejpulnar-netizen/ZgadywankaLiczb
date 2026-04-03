@@ -1,32 +1,30 @@
-import random  # KROPKA: użyjemy random.randint() do losowania
+import random
 
 def gra():
-    # Losujemy liczbę z zakresu 1-100
+    # KROPKA: wywołujemy funkcję z modułu random
     liczba_do_odgadniecia = random.randint(1, 100)
     proby = 0
     
     print("--- GRA: ZGADNIJ LICZBĘ (1-100) ---")
 
-    while True: # DWUKROPEK i PĘTLA: gra trwa do skutku
-        try: # TRY: bo użytkownik może wpisać literę zamiast liczby
-            strzal = int(input("Podaj swoją liczbę: ")) # BRAK SPACJI przed (
-            proby += 1 # To samo co: proby = proby + 1
+    while True: # DWUKROPEK: początek pętli
+        try: # TRY: sprawdzamy czy użytkownik wpisuje cyfry
+            strzal = int(input("Podaj swoją liczbę: "))
+            proby += 1 # Inkrementacja (licznik prób)
             
-            if strzal < 1 or strzal > 100: # WARUNEK: zakres
-                print("Mówiłem: od 1 do 100! Tracisz szansę.")
-                continue
+            if strzal < 1 or strzal > 100:
+                print("Mówiłem: od 1 do 100!")
+                continue # Wróć na start pętli
 
-            if strzal == liczba_do_odgadniecia: # IF: sukces
+            if strzal == liczba_do_odgadniecia:
                 print(f"GRATULACJE! Odgadłeś w {proby} próbach.")
-                break # WYJŚCIE z pętli
-            elif strzal < liczba_do_odgadniecia: # ELIF: za mało
+                break # Wyjście z pętli
+            elif strzal < liczba_do_odgadniecia:
                 print("Za mało! Spróbuj wyżej.")
-            else: # ELSE: za dużo
+            else:
                 print("Za dużo! Spróbuj niżej.")
                 
-        except ValueError: # EXCEPT: obsługa błędnego wpisu
+        except ValueError: # EXCEPT: jeśli int() wyrzuci błąd
             print("Błąd! Musisz wpisać liczbę całkowitą.")
-            continue
 
-# Uruchomienie gry
 gra()
